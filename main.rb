@@ -28,15 +28,21 @@ class Deck
     @active_cards << top_card
     top_card
   end
+
+  def to_s
+    @hidden_cards.to_s
+  end
   
   private
   
   def build_deck
+    cards = []
     SUITS.each do |suit|
       VALUES.each do |value|
-        @hidden_cards << Card.new(suit, value)
+        cards << Card.new(suit, value)
       end
     end
+    cards
   end
 end
 
@@ -47,4 +53,12 @@ class Card
     @suit = suit
     @value = value
   end
+
+  def to_s
+    "#{value} of #{suit}"
+  end
 end
+
+deck = Deck.new
+deck.shuffle
+puts deck.to_s
